@@ -1,0 +1,287 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>城市檔案 - Voyager Compass</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="static/css/main.css" />
+	<link rel="stylesheet" href="static/css/custom.css" />
+	<link rel="stylesheet" href="static/css/fontawesome-all.min.css" />
+	<noscript>
+		<link rel="stylesheet" href="static/css/noscript.css" />
+	</noscript>
+</head>
+
+<body class="landing is-preload">
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header" class="alt">
+			<div class="header-content">
+				<div class="logo">
+					<img src="static/sample/Voyage Compass Logo.png" alt="Voyager Compass Logo" class="logo-img" />
+					<h1><a href="/">Voyager Compass</a></h1>
+				</div>
+				<nav id="nav">
+					<ul>
+						<li><a href="/">首頁</a></li>
+						<li class="dropdown">
+							<a href="#features">使用功能</a>
+							<ul class="dropdown-menu">
+								<li><a href="ranking"><span class="icon solid fa-chart-bar"></span>指標 ranking</a>
+								</li>
+								<li><a href="city-profile"><span class="icon solid fa-building"></span>城市概況</a>
+								</li>
+								<li><a href="character1"><span class="icon solid fa-users"></span>角色情境</a></li>
+							</ul>
+						</li>
+						<li><a href="#about">關於我們</a></li>
+						<li><a href="#contact">聯絡我們</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+		<!-- Main Content -->
+		<article id="main">
+			<!-- Section 1: Heading, Subheading, City Image, Radar Chart -->
+			<section class="wrapper style1">
+				<div class="inner">
+					<div class="city-profile-header">
+						<div class="city-profile-content">
+							<h1>新加坡城市檔案</h1>
+							<h3>亞洲金融科技樞紐與多元文化融合之都</h3>
+
+							<!-- Radar Chart Section -->
+							<div class="radar-section">
+								<div class="radar-container">
+									<div class="radar-chart">
+										<svg viewBox="-60 -40 560 480" class="radar-svg">
+											<!-- Background Circle -->
+											<defs>
+												<radialGradient id="radarBackground" cx="50%" cy="50%" r="50%">
+													<stop offset="0%" style="stop-color:#f8fafc;stop-opacity:1" />
+													<stop offset="70%" style="stop-color:#e2e8f0;stop-opacity:0.8" />
+													<stop offset="100%" style="stop-color:#cbd5e1;stop-opacity:0.6" />
+												</radialGradient>
+											</defs>
+
+											<!-- Main background circle -->
+											<circle cx="200" cy="200" r="190" fill="url(#radarBackground)"
+												stroke="#cbd5e1" stroke-width="2" opacity="0.9" />
+
+											<!-- Radar Grid -->
+											<g class="radar-grid">
+												<!-- Concentric circles -->
+												<circle cx="200" cy="200" r="38" fill="none" stroke="#d1d5db"
+													stroke-width="1" opacity="0.6" />
+												<circle cx="200" cy="200" r="76" fill="none" stroke="#d1d5db"
+													stroke-width="1" opacity="0.7" />
+												<circle cx="200" cy="200" r="114" fill="none" stroke="#d1d5db"
+													stroke-width="1" opacity="0.8" />
+												<circle cx="200" cy="200" r="152" fill="none" stroke="#d1d5db"
+													stroke-width="1" opacity="0.8" />
+												<circle cx="200" cy="200" r="190" fill="none" stroke="#d1d5db"
+													stroke-width="1" opacity="0.9" />
+
+												<!-- Radar lines from center to vertices -->
+												<line x1="200" y1="200" x2="200" y2="20" stroke="#e2e8f0"
+													stroke-width="1" opacity="0.6" />
+												<line x1="200" y1="200" x2="380" y2="80" stroke="#e2e8f0"
+													stroke-width="1" opacity="0.6" />
+												<line x1="200" y1="200" x2="380" y2="320" stroke="#e2e8f0"
+													stroke-width="1" opacity="0.6" />
+												<line x1="200" y1="200" x2="200" y2="380" stroke="#e2e8f0"
+													stroke-width="1" opacity="0.6" />
+												<line x1="200" y1="200" x2="20" y2="320" stroke="#e2e8f0"
+													stroke-width="1" opacity="0.6" />
+												<line x1="200" y1="200" x2="20" y2="80" stroke="#e2e8f0"
+													stroke-width="1" opacity="0.6" />
+											</g>
+
+											<!-- Data areas -->
+											<g class="radar-data">
+												<polygon points="200,34 321,130 332,277 200,328 99,259 110,148"
+													fill="rgba(14, 165, 233, 0.2)" stroke="#0ea5e9" stroke-width="2"
+													class="radar-area" />
+											</g>
+
+											<!-- Data points -->
+											<g class="radar-points">
+												<circle cx="200" cy="34" r="8" fill="#0ea5e9" class="radar-dot"
+													data-label="科技職缺" />
+												<circle cx="321" cy="130" r="8" fill="#14b8a6" class="radar-dot"
+													data-label="生活成本" />
+												<circle cx="332" cy="277" r="8" fill="#f59e0b" class="radar-dot"
+													data-label="新創機會" />
+												<circle cx="200" cy="328" r="8" fill="#8b5cf6" class="radar-dot"
+													data-label="安全性" />
+												<circle cx="99" cy="259" r="8" fill="#ef4444" class="radar-dot"
+													data-label="空氣品質" />
+												<circle cx="110" cy="148" r="8" fill="#06b6d4" class="radar-dot"
+													data-label="交通便利" />
+											</g>
+
+											<!-- Labels -->
+											<g class="radar-labels">
+												<text x="200" y="-15" text-anchor="middle"
+													class="radar-label-text">科技職缺</text>
+												<text x="410" y="93" text-anchor="middle"
+													class="radar-label-text">生活成本</text>
+												<text x="410" y="307" text-anchor="middle"
+													class="radar-label-text">新創機會</text>
+												<text x="200" y="415" text-anchor="middle"
+													class="radar-label-text">安全性</text>
+												<text x="-20" y="307" text-anchor="middle"
+													class="radar-label-text">空氣品質</text>
+												<text x="-20" y="93" text-anchor="middle"
+													class="radar-label-text">交通便利</text>
+											</g>
+										</svg>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- City Image -->
+						<div class="city-profile-image">
+							<img src="static/images/Singapore.png" alt="新加坡城市景觀" />
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Horizontal Divider -->
+			<hr class="section-divider" />
+
+			<!-- Section 2: Employment and Rental Data -->
+			<section class="wrapper style2">
+				<div class="inner">
+					<div class="employment-section">
+						<div class="employment-data">
+							<h2>就業與租金數據</h2>
+							<div class="data-grid">
+								<div class="data-item">
+									<h3>平均薪資</h3>
+									<p class="data-value">SGD 85,000</p>
+									<p class="data-label">年薪</p>
+								</div>
+								<div class="data-item">
+									<h3>租房成本</h3>
+									<p class="data-value">SGD 3,500</p>
+									<p class="data-label">月租</p>
+								</div>
+								<div class="data-item">
+									<h3>就業率</h3>
+									<p class="data-value">95.2%</p>
+									<p class="data-label">整體就業</p>
+								</div>
+								<div class="data-item">
+									<h3>科技職缺</h3>
+									<p class="data-value">12,500+</p>
+									<p class="data-label">開放職位</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="employment-description">
+							<h2>文字描述</h2>
+							<p>新加坡作為亞洲金融科技樞紐，提供豐富的就業機會和具競爭力的薪資待遇。科技產業蓬勃發展，特別是金融科技、電子商務和人工智能領域。</p>
+							<p>租房市場相對穩定，政府提供多項住房政策支持，包括組屋計劃和租金補貼。交通便利，生活品質高，是海外工作者的理想選擇。</p>
+							<p>英語為官方語言之一，多元文化環境讓國際人才能夠快速適應。稅務制度簡潔，個人所得稅率相對較低，整體生活成本合理。</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Horizontal Divider -->
+			<hr class="section-divider" />
+
+			<!-- Section 3: Four Data Cards -->
+			<section class="wrapper style3">
+				<div class="inner">
+					<div class="stats-grid">
+						<div class="stat-card">
+							<h3>人口統計</h3>
+							<div class="stat-content">
+								<div class="stat-number">5.9M</div>
+								<p>總人口</p>
+								<div class="stat-details">
+									<span>密度: 8,000/km²</span>
+									<span>外籍人士: 38%</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="stat-card">
+							<h3>生活成本</h3>
+							<div class="stat-content">
+								<div class="stat-number">$$$$</div>
+								<p>成本等級</p>
+								<div class="stat-details">
+									<span>飲食: SGD 15/餐</span>
+									<span>交通: SGD 120/月</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="stat-card">
+							<h3>安全指數</h3>
+							<div class="stat-content">
+								<div class="stat-number">96.1</div>
+								<p>安全評分</p>
+								<div class="stat-details">
+									<span>犯罪率: 極低</span>
+									<span>排名: 全球第2</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="stat-card">
+							<h3>生活品質</h3>
+							<div class="stat-content">
+								<div class="stat-number">92.5</div>
+								<p>品質評分</p>
+								<div class="stat-details">
+									<span>醫療: 全球頂尖</span>
+									<span>教育: 優質系統</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</article>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+				<li><a href="#" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+				<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+			</ul>
+			<ul class="copyright">
+				<li>&copy; 2024 跨國職涯導航儀. All rights reserved.</li>
+				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="static/js/jquery.min.js"></script>
+	<script src="static/js/jquery.scrollex.min.js"></script>
+	<script src="static/js/jquery.scrolly.min.js"></script>
+	<script src="static/js/browser.min.js"></script>
+	<script src="static/js/breakpoints.min.js"></script>
+	<script src="static/js/util.js"></script>
+	<script src="static/js/main.js"></script>
+
+</body>
+
+</html>

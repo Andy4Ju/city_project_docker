@@ -1,0 +1,1332 @@
+/* Custom Purple Professional Theme */
+
+/* Root Variables - Purple Color Palette */
+:root {
+    --primary-bg: #f8fafc;
+    --secondary-bg: #ffffff;
+    --accent-bg: #ede9fe;
+    --primary-text: #1f2937;
+    --secondary-text: #6b7280;
+    --accent-purple: #8b5cf6;
+    --accent-indigo: #6366f1;
+    --accent-violet: #a855f7;
+    --dark-navy: #1e1b4b;
+    --medium-purple: #4c1d95;
+    --light-purple: #c4b5fd;
+    --border-color: #d1d5db;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --gradient-purple: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+    --gradient-indigo: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    --gradient-violet: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%);
+    --gradient-navy: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+}
+
+/* Global Overrides */
+body {
+    background: var(--primary-bg) !important;
+    color: var(--primary-text) !important;
+    font-family: 'Inter', 'Open Sans', Helvetica, sans-serif;
+}
+
+body,
+input,
+select,
+textarea {
+    color: var(--primary-text) !important;
+}
+
+/* Enhanced Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--primary-text) !important;
+}
+
+p {
+    line-height: 1.7;
+    color: var(--secondary-text) !important;
+}
+
+/* Header Styling - Complete Override */
+#header {
+    background: transparent !important;
+    backdrop-filter: none;
+    border-bottom: none;
+    box-shadow: none;
+    position: fixed !important;
+    width: 100% !important;
+    z-index: 1000 !important;
+    transition: all 0.3s ease;
+    padding: 0 !important;
+    height: 3.5em !important;
+    line-height: 3.5em !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: 0 !important;
+}
+
+/* Header for pages without banner (like city-profile.html) */
+body:not(.landing) #header {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%) !important;
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+}
+
+body:not(.landing) #header h1 a {
+    color: var(--primary-text) !important;
+    text-shadow: none !important;
+}
+
+body:not(.landing) #header nav>ul>li>a {
+    color: var(--secondary-text) !important;
+    text-shadow: none !important;
+}
+
+body:not(.landing) #header h1 a:hover,
+body:not(.landing) #header nav>ul>li>a:hover {
+    color: var(--accent-purple) !important;
+}
+
+body:not(.landing) .logo-img {
+    filter: none !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+}
+
+/* Add padding for main content on pages without banner */
+body:not(.landing) #main {
+    padding-top: 4.5em;
+}
+
+/* Override the original positioning completely */
+#header h1 {
+    position: static !important;
+    left: auto !important;
+    height: auto !important;
+    line-height: normal !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+}
+
+/* Remove header background overlay for transparent effect */
+
+.header-content {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 2rem !important;
+    height: 3.5em !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+.logo {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+.logo-img {
+    height: 42px !important;
+    width: auto !important;
+    max-width: 120px !important;
+    object-fit: contain !important;
+    border-radius: 6px !important;
+    flex-shrink: 0 !important;
+    display: block !important;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)) brightness(1.1) contrast(1.1) !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    padding: 4px 8px !important;
+    box-sizing: border-box !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+#header h1 {
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    height: auto !important;
+    line-height: normal !important;
+}
+
+#header h1 a {
+    font-size: 1.4rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.1em !important;
+    color: white !important;
+    text-decoration: none !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    display: block !important;
+    height: auto !important;
+    border: none !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+#header h1 a:hover {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Navigation positioning override */
+#header nav {
+    position: static !important;
+    right: auto !important;
+    top: auto !important;
+    height: auto !important;
+    line-height: normal !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+#header nav>ul {
+    display: flex !important;
+    align-items: center !important;
+    height: auto !important;
+    line-height: normal !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#header nav>ul>li {
+    display: inline-flex !important;
+    align-items: center !important;
+    height: auto !important;
+    line-height: normal !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#header nav>ul>li>a {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    text-decoration: none !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 6px !important;
+    transition: all 0.3s ease !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+    display: flex !important;
+    align-items: center !important;
+    height: auto !important;
+    line-height: normal !important;
+    background: none !important;
+    border: none !important;
+}
+
+#header nav>ul>li>a:hover {
+    color: white !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+#header nav>ul>li>a.menuToggle {
+    width: auto !important;
+    height: auto !important;
+    text-indent: 0 !important;
+    overflow: visible !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+#header nav>ul>li>a.menuToggle:after {
+    display: none !important;
+}
+
+/* Banner Enhancements */
+#banner {
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+}
+
+#banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(30, 27, 75, 0.8) 0%, rgba(76, 29, 149, 0.7) 50%, rgba(139, 92, 246, 0.6) 100%);
+    z-index: 1;
+}
+
+@keyframes slowZoom {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.05);
+    }
+}
+
+#banner .inner {
+    position: relative;
+    z-index: 2;
+    animation: fadeInUp 0.8s ease-out;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 8rem 2rem 6rem;
+    text-align: center;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#banner h2 {
+    color: white !important;
+    font-size: 3.5em;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4),
+        1px 1px 2px rgba(0, 0, 0, 0.6) !important;
+    letter-spacing: 0.02em;
+}
+
+#banner h2:before,
+#banner h2:after {
+    display: none;
+}
+
+#banner p {
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-size: 1.3em;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Navigation and interactive elements */
+.more,
+#banner .more {
+    color: rgba(255, 255, 255, 0.9) !important;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.more:hover,
+#banner .more:hover {
+    color: white !important;
+    border-color: white;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Wrapper sections */
+.wrapper {
+    background: var(--secondary-bg);
+    padding: 4rem 0;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.wrapper:hover {
+    background: rgba(248, 250, 252, 0.8);
+}
+
+.wrapper.style1 {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.wrapper.style2 {
+    background: linear-gradient(135deg, #fefbff 0%, #f3e8ff 100%);
+}
+
+.wrapper.style3 {
+    background: linear-gradient(135deg, #f8fafc 0%, #ede9fe 100%);
+}
+
+.wrapper.style4 {
+    background: var(--dark-navy);
+    color: white;
+}
+
+.wrapper.style4 h2,
+.wrapper.style4 p {
+    color: white !important;
+}
+
+.wrapper .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Header styling */
+header.major h2 {
+    color: var(--primary-text) !important;
+    font-size: 2.8em;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+header.major h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--gradient-purple);
+    border-radius: 2px;
+}
+
+header.major p {
+    color: var(--secondary-text) !important;
+    font-size: 1.2em;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+}
+
+/* Feature Grid Layouts */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.feature-card {
+    background: var(--secondary-bg);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.4s ease;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-purple);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.feature-card:hover::before {
+    transform: scaleX(1);
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px rgba(139, 92, 246, 0.15);
+    border-color: var(--accent-purple);
+}
+
+.feature-icon {
+    margin-bottom: 1.5rem;
+}
+
+.feature-icon .icon {
+    display: inline-block;
+    width: 4rem;
+    height: 4rem;
+    line-height: 4rem;
+    text-align: center;
+    border-radius: 50%;
+    background: var(--gradient-purple);
+    color: white;
+    font-size: 1.8rem;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.feature-card:hover .feature-icon .icon {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+    background: var(--gradient-violet);
+}
+
+.feature-content h3 {
+    color: var(--primary-text) !important;
+    font-size: 1.4em;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.feature-content h4 {
+    color: var(--accent-purple) !important;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: none;
+}
+
+.feature-content p {
+    color: var(--secondary-text) !important;
+    font-size: 0.95em;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Features List Styling */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    padding: 2rem 0;
+}
+
+.features li {
+    background: var(--secondary-bg);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.4s ease;
+    text-align: center;
+    list-style: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.features li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-indigo);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.features li:hover::before {
+    transform: scaleX(1);
+}
+
+.features li:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px rgba(99, 102, 241, 0.15);
+    border-color: var(--accent-indigo);
+}
+
+.features h3 {
+    color: var(--primary-text) !important;
+    font-size: 1.3em;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.features p {
+    color: var(--secondary-text) !important;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Icon styling */
+.icon.major {
+    display: inline-block;
+    width: 4rem;
+    height: 4rem;
+    line-height: 4rem;
+    text-align: center;
+    border-radius: 50%;
+    background: var(--gradient-indigo);
+    color: white;
+    font-size: 1.8rem;
+    margin: 0 auto 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.features li:hover .icon.major {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    background: var(--gradient-violet);
+}
+
+.icon.style1 {
+    background: var(--gradient-purple) !important;
+}
+
+.icon.style2 {
+    background: var(--gradient-indigo) !important;
+}
+
+.icon.style3 {
+    background: var(--gradient-violet) !important;
+}
+
+/* Button Styling */
+.button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button {
+    background: var(--gradient-purple) !important;
+    color: white !important;
+    border: none;
+    border-radius: 50px;
+    padding: 1rem 2rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+button:hover {
+    background: var(--gradient-violet) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4) !important;
+}
+
+.button.primary {
+    background: var(--gradient-indigo) !important;
+}
+
+.button.primary:hover {
+    background: var(--gradient-violet) !important;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4) !important;
+}
+
+/* Actions */
+ul.actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+ul.actions li {
+    margin: 0;
+}
+
+ul.actions.special {
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+/* Footer */
+#footer {
+    background: var(--dark-navy) !important;
+    color: white !important;
+    padding: 4rem 0 2rem;
+    margin-top: 4rem;
+}
+
+#footer .icons {
+    margin-bottom: 2rem;
+}
+
+#footer .icons a {
+    color: white !important;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    margin: 0 0.5rem;
+    font-size: 1.2em;
+}
+
+#footer .icons a:hover {
+    background: var(--accent-purple);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+}
+
+#footer .copyright {
+    color: rgba(255, 255, 255, 0.7) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    margin-top: 2rem;
+}
+
+#footer .copyright a {
+    color: var(--light-purple) !important;
+    text-decoration: none;
+}
+
+#footer .copyright a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 980px) {
+    .header-content {
+        padding: 0 1rem !important;
+    }
+
+    .logo-img {
+        height: 36px !important;
+        width: auto !important;
+        max-width: 100px !important;
+    }
+
+    #header h1 a {
+        font-size: 1.2rem !important;
+    }
+
+    .logo {
+        gap: 0.5rem !important;
+    }
+
+    #header nav>ul>li>a {
+        font-size: 1rem !important;
+    }
+
+    #banner .inner {
+        margin: 1rem;
+        padding: 3rem 2rem;
+    }
+
+    .wrapper .inner {
+        padding: 3rem 2rem;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .features {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        padding: 2rem;
+    }
+}
+
+@media screen and (max-width: 736px) {
+    #header {
+        height: 4em !important;
+        line-height: 4em !important;
+    }
+
+    .header-content {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 1rem !important;
+        height: 4em !important;
+        padding: 0 1rem !important;
+    }
+
+    .logo {
+        gap: 0.4rem !important;
+    }
+
+    .logo-img {
+        height: 32px !important;
+        width: auto !important;
+        max-width: 90px !important;
+    }
+
+    #header h1 a {
+        font-size: 1rem !important;
+    }
+
+    #header nav>ul>li>a {
+        font-size: 0.9rem !important;
+        padding: 0 1rem !important;
+    }
+
+    #header nav>ul>li>a.menuToggle:after {
+        width: 1.5em !important;
+    }
+
+    #banner {
+        padding-top: 0 !important;
+    }
+
+    #banner h2 {
+        font-size: 2.2em;
+    }
+
+    header.major h2 {
+        font-size: 2em;
+    }
+
+    .wrapper .inner {
+        padding: 2rem 1.5rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+    }
+
+    .feature-card {
+        padding: 2rem;
+    }
+}
+
+/* Additional Professional Touches */
+.spotlight:nth-child(even) {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.spotlight:nth-child(odd) {
+    background: linear-gradient(135deg, #fefbff 0%, #f3e8ff 100%);
+}
+
+/* Focus states for accessibility */
+html {
+    scroll-behavior: smooth;
+}
+
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid var(--accent-purple);
+    outline-offset: 2px;
+}
+
+/* Smooth animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Menu styling */
+#menu {
+    background: rgba(30, 27, 75, 0.95);
+    backdrop-filter: blur(15px);
+}
+
+#menu ul>li>a {
+    color: rgba(255, 255, 255, 0.9) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+#menu ul>li>a:hover {
+    color: var(--light-purple) !important;
+    background: rgba(139, 92, 246, 0.1);
+}
+
+.city-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+}
+
+.city-card {
+    text-align: center;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(30, 41, 59, 0.06);
+    padding: 2rem 1rem 1.5rem 1rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid var(--border-color);
+}
+
+.city-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px rgba(139, 92, 246, 0.15);
+    border-color: var(--accent-purple);
+}
+
+.city-card img {
+    width: 200px !important;
+    height: 200px !important;
+    object-fit: cover;
+    border-radius: 16px;
+    display: block;
+    margin: 0 auto 1em auto;
+    transition: transform 0.3s ease;
+}
+
+.city-card:hover img {
+    transform: scale(1.05);
+}
+
+.city-card h3 {
+    margin: 0.5rem 0 0.25rem 0;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--primary-text) !important;
+}
+
+.city-card p {
+    color: var(--secondary-text) !important;
+    font-size: 1em;
+    margin: 0;
+}
+
+@media (max-width: 980px) {
+    .city-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .city-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .city-card img {
+        width: 120px !important;
+        height: 120px !important;
+    }
+}
+
+#banner .actions .button.primary,
+#banner .actions .button.primary:focus {
+    background: var(--gradient-purple) !important;
+    color: #fff !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3) !important;
+    opacity: 1 !important;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+#banner .actions .button.primary:hover,
+#banner .actions .button.primary:active {
+    background: var(--gradient-violet) !important;
+    color: #fff !important;
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4) !important;
+    transform: translateY(-3px);
+}
+
+#banner .actions {
+    position: relative;
+    z-index: 2;
+}
+
+#banner .banner-title {
+    color: white !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4),
+        1px 1px 2px rgba(0, 0, 0, 0.6) !important;
+    font-weight: 900 !important;
+}
+
+.banner-desc {
+    opacity: 0;
+    animation: fadeInUp 0.2s ease-out 0.15s forwards;
+}
+
+.banner-btn {
+    opacity: 0;
+    animation: fadeInUp 0.2s ease-out 0.3s forwards;
+}
+
+#banner:after {
+    transition: opacity 2s ease-in-out;
+}
+
+#banner .more {
+    color: #fff !important;
+    text-shadow: none !important;
+    transition-delay: 0s !important;
+}
+
+/* Hover Features Grid */
+.features-hover-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.feature-hover-card {
+    background: var(--primary-bg);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.4s ease;
+    text-align: center;
+    position: relative;
+    overflow: visible;
+    cursor: pointer;
+    min-height: 320px;
+}
+
+/* Animated Border Effect for Feature Hover Cards */
+.feature-hover-card::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: linear-gradient(90deg, transparent, #8b5cf6, #6366f1, #a855f7, #8b5cf6, transparent);
+    background-size: 300% 300%;
+    border-radius: 20px;
+    z-index: -1;
+    animation: borderFlow 3s ease-in-out infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 4px;
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+}
+
+.feature-hover-card:hover::before {
+    opacity: 1;
+}
+
+.feature-hover-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15);
+}
+
+@keyframes borderFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    25% {
+        background-position: 100% 50%;
+    }
+
+    50% {
+        background-position: 100% 100%;
+    }
+
+    75% {
+        background-position: 0% 100%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* GIF Icon Styling */
+.feature-gif-icon {
+    width: 5rem !important;
+    height: 5rem !important;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block;
+    object-fit: contain;
+    background: var(--gradient-purple);
+    padding: 0.8rem;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.feature-hover-card:hover .feature-gif-icon {
+    transform: scale(1.15);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+    border-color: rgba(255, 255, 255, 0.3);
+    background: var(--gradient-violet);
+}
+
+.feature-hover-card h3 {
+    color: var(--primary-text) !important;
+    font-size: 1.4em;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.feature-details {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.4s ease;
+    max-height: none;
+    overflow: visible;
+}
+
+.feature-details h4 {
+    color: var(--accent-purple) !important;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: none;
+}
+
+.feature-details p {
+    color: var(--secondary-text) !important;
+    font-size: 0.9em;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.feature-details .button {
+    background: var(--gradient-purple) !important;
+    color: white !important;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.feature-details .button:hover {
+    background: var(--gradient-violet) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+/* Responsive for hover features */
+@media screen and (max-width: 980px) {
+    .features-hover-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        margin-top: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 736px) {
+    .features-hover-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .feature-hover-card {
+        min-height: 320px;
+    }
+}
+
+/* City Profile CTA Button */
+.city-profile-cta {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1.5rem 0;
+    animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+.city-profile-btn {
+    /* Reset all inherited styles */
+    all: unset !important;
+
+    /* New modern design */
+    background: var(--gradient-violet) !important;
+    color: #ffffff !important;
+    padding: 1rem 3rem 1rem 1.2rem !important;
+    border-radius: 12px !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+
+    /* Flexbox centering */
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+
+    /* Sizing */
+    min-width: 200px !important;
+    height: 48px !important;
+    box-sizing: border-box !important;
+
+    /* Effects */
+    border: 2px solid transparent !important;
+    box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: pointer !important;
+    user-select: none !important;
+    white-space: nowrap !important;
+    position: relative !important;
+}
+
+/* Icon styling for new button design */
+.city-profile-btn .icon {
+    font-size: 1.1rem !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Ensure the button content is properly centered */
+.city-profile-btn>* {
+    display: inline-flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+}
+
+/* Force text alignment override for any conflicting styles */
+.city-profile-cta .city-profile-btn {
+    text-align: center !important;
+}
+
+.city-profile-cta {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+}
+
+/* Apply new button design to all selector combinations */
+a.button.primary.large.city-profile-btn,
+.button.primary.large.city-profile-btn,
+.city-profile-btn.button.primary.large {
+    all: unset !important;
+    background: var(--gradient-violet) !important;
+    color: #ffffff !important;
+    padding: 1rem 3rem 1rem 1.2rem !important;
+    border-radius: 12px !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+    min-width: 200px !important;
+    height: 48px !important;
+    box-sizing: border-box !important;
+    border: 2px solid transparent !important;
+    box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: pointer !important;
+    user-select: none !important;
+    white-space: nowrap !important;
+    position: relative !important;
+}
+
+/* Ensure proper alignment of all child elements */
+.city-profile-btn * {
+    vertical-align: middle !important;
+    line-height: 1.2 !important;
+}
+
+.city-profile-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(168, 85, 247, 0.4) !important;
+    background: linear-gradient(135deg, #9333ea 0%, #a855f7 100%) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.city-profile-btn:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 8px rgba(168, 85, 247, 0.3) !important;
+}
+
+.city-profile-btn:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.3) !important;
+}
+
+/* Responsive CTA Button */
+@media screen and (max-width: 980px) {
+    .city-profile-cta {
+        margin-top: 1.5rem;
+        padding: 1.2rem 0;
+    }
+
+    .city-profile-btn {
+        min-width: 180px !important;
+        padding: 0.9rem 2.4rem 0.9rem 1.1rem !important;
+        font-size: 0.95rem !important;
+        gap: 0.4rem !important;
+    }
+
+    .cta-description {
+        font-size: 0.9rem !important;
+        margin-top: 1.2rem !important;
+        padding: 0 1rem !important;
+    }
+}
+
+@media screen and (max-width: 736px) {
+    .city-profile-cta {
+        margin-top: 1.2rem;
+        padding: 1rem 0;
+    }
+
+    .city-profile-btn {
+        min-width: 160px !important;
+        padding: 0.8rem 2.2rem 0.8rem 1rem !important;
+        font-size: 0.9rem !important;
+        height: 44px !important;
+        gap: 0.4rem !important;
+        border-radius: 10px !important;
+    }
+
+    .cta-description {
+        font-size: 0.85rem !important;
+        line-height: 1.5 !important;
+    }
+}

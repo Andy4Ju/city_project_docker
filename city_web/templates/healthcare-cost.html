@@ -1,0 +1,685 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>醫療費用上漲：2014-2024年自付醫療費用分析 - Voyage Compass</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="static/css/main.css" />
+	<link rel="stylesheet" href="static/css/custom.css" />
+	<link rel="stylesheet" href="static/css/fontawesome-all.min.css" />
+	<link rel="stylesheet" href="static/css/index-custom.css" />
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<style>
+		/* 統一選單樣式 - 確保所有頁面一致 */
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+		}
+		
+		.menu-item {
+			display: flex;
+			align-items: center;
+			font-size: 0.85rem;
+			white-space: nowrap;
+			padding-left: 0.75rem;
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+		}
+		
+		.menu-item img {
+			width: 1.2em;
+			height: 1.2em;
+			margin-right: 0.5rem;
+			margin-left: 0;
+			vertical-align: middle;
+		}
+		
+		.menu-item i {
+			margin-right: 0.5rem;
+			margin-left: 0;
+			width: 1.2em;
+			display: inline-block;
+			color: #94a3b8;
+		}
+		
+		.menu-item:hover {
+			background: #f1f5f9;
+			color: #3b82f6;
+		}
+		
+		.menu-item.active {
+			background: #dbeafe;
+			color: #3b82f6;
+			border-left: 3px solid #3b82f6;
+		}
+		
+		.menu-item.main-menu-item {
+			font-weight: 600;
+			color: #374151;
+			border-bottom: none;
+			padding-bottom: 0;
+			margin-bottom: 0;
+		}
+		
+		/* 醫療費用頁面特定樣式 */
+		body {
+			background-color: #f8f9fa; 
+			font-family: 'Noto Sans TC', sans-serif;
+			color: #073B4C;
+		}
+		
+		.chart-container {
+			position: relative;
+			width: 100%;
+			max-width: 800px;
+			margin-left: auto;
+			margin-right: auto;
+			height: 300px;
+			max-height: 45vh;
+		}
+		@media (min-width: 768px) {
+			.chart-container {
+				height: 400px;
+			}
+		}
+		.stat-card {
+			background-color: white;
+			border-radius: 0.75rem;
+			padding: 1.5rem;
+			text-align: center;
+			box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+			transition: transform 0.2s, box-shadow 0.2s;
+		}
+		.stat-card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+		}
+		.main-title {
+			color: #005f73;
+		}
+		
+		.brand-palette-bg-1 { background-color: #005f73; }
+		.brand-palette-bg-2 { background-color: #0a9396; }
+		.brand-palette-bg-3 { background-color: #94d2bd; }
+		.brand-palette-bg-4 { background-color: #e9d8a6; }
+		.brand-palette-bg-5 { background-color: #ee9b00; }
+		.brand-palette-bg-6 { background-color: #ca6702; }
+		.brand-palette-bg-7 { background-color: #bb3e03; }
+        
+        /* 強制平均費用增長顯示為紅色 */
+        #avgIncrease {
+            color: #dc2626 !important;
+        }
+        
+        /* 自定義顏色類別 */
+        .text-bb3e03 {
+            color: #bb3e03 !important;
+        }
+        
+        .text-0a9396 {
+            color: #0a9396 !important;
+        }
+        
+        /* Section Title 樣式 - 與 career-velocity-index.html 一致 */
+        .section-title {
+            color: #073B4C;
+            border-bottom: 3px solid #FFD166;
+            padding-bottom: 0.5rem;
+            display: block;
+            text-align: center;
+        }
+        
+        /* Main Content Adjustment - 與 career-velocity-index.html 一致 */
+        .main-content {
+            margin-left: 208px;
+            min-height: 100vh;
+            position: relative;
+            top: 0;
+            padding-left: 2rem; /* 增加左邊距避免與選單重疊 */
+        }
+        
+        /* 為容器添加額外的左邊距 */
+        .container {
+            padding-left: 2rem;
+        }
+        
+        /* 為主要內容區域添加左邊距 */
+        main {
+            padding-left: 2rem;
+        }
+        
+        /* 為 header 添加額外的左邊距 */
+        header {
+            padding-left: 1rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .left-menu {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .left-menu.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            /* Responsive table */
+            .overflow-x-auto {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            table {
+                min-width: 600px;
+            }
+        }
+	</style>
+
+	<noscript>
+		<link rel="stylesheet" href="static/css/noscript.css" />
+	</noscript>
+</head>
+<body class="landing is-preload">
+
+    <!-- Left Menu -->
+	<nav class="left-menu" id="leftMenu">
+		<div class="menu-header">
+			<div class="menu-logo">
+				<div class="menu-logo-circle">
+					<img src="static/images/Voyage Compass Logo.png" alt="Voyage Compass Logo" />
+				</div>
+			</div>
+		</div>
+
+		<div class="menu-nav">
+			<div class="menu-section">
+				<a href="/" class="menu-item main-menu-item">
+					首頁
+				</a>
+				<a href="/#gallery" class="menu-item main-menu-item">
+					城市探索
+				</a>
+				<a href="/bangkok" class="menu-item">
+					<img src="static/images/bkk_icon_1.png" alt="Bangkok">曼谷 Bangkok
+				</a>
+				<a href="/hong-kong" class="menu-item">
+					<img src="static/images/hkg_icon_1.png" alt="Hong Kong">香港 Hong Kong
+				</a>
+				<a href="/london" class="menu-item">
+					<img src="static/images/lon_icon_1.png" alt="London">倫敦 London
+				</a>
+				<a href="/new-york-city" class="menu-item">
+					<img src="static/images/nyc_icon_1.png" alt="New York City">紐約 New York City
+				</a>
+				<a href="/san-francisco" class="menu-item">
+					<img src="static/images/sfo_icon_1.png" alt="San Francisco">舊金山 San Francisco
+				</a>
+				<a href="seoul" class="menu-item">
+					<img src="static/images/sel_icon_1.png" alt="Seoul">首爾 Seoul
+				</a>
+				<a href="/singapore" class="menu-item">
+					<img src="static/images/sgp_icon_1.png" alt="Singapore">新加坡 Singapore
+				</a>
+				<a href="/sydney" class="menu-item">
+					<img src="static/images/syd_icon_1.png" alt="Sydney">雪梨 Sydney
+				</a>
+				<a href="/taipei" class="menu-item">
+					<img src="static/images/tpe_icon_1.png" alt="Taipei">台北 Taipei
+				</a>
+				<a href="/tokyo" class="menu-item">
+					<img src="static/images/tyo_icon_1.png" alt="Tokyo">東京 Tokyo
+				</a>
+				<a href="/vancouver" class="menu-item">
+					<img src="static/images/yvr_icon_1.png" alt="Vancouver">溫哥華 Vancouver
+				</a>
+				<a href="/#characters" class="menu-item main-menu-item">
+					角色情境
+				</a>
+				<a href="/rocket-dev-new" class="menu-item">
+					<i class="fas fa-rocket"></i>職場新人 Rocket Dev
+				</a>
+				<a href="/steady-pro-new" class="menu-item">
+					<i class="fas fa-shield-alt"></i>穩健高薪 Steady Pro
+				</a>
+				<a href="/nomad-coder-new" class="menu-item">
+					<i class="fas fa-laptop"></i>數位遊牧 Nomad Coder
+				</a>
+				<a href="/startup-maverick-new" class="menu-item">
+					<i class="fas fa-lightbulb"></i>創業浪客 Startup Maverick
+				</a>
+				<a href="/" class="menu-item main-menu-item">
+					指標一覽表
+				</a>
+				<a href="/career-velocity-index" class="menu-item">
+                    <img src="static/images/advancement.png" alt="Feature">Career Velocity Index
+                </a>
+                <a href="/coworking-space" class="menu-item">
+                    <img src="static/images/briefcase.png" alt="Feature">Co-working Space Index
+                </a>
+                <a href="/global-tech-env" class="menu-item">
+                    <img src="static/images/technology.png" alt="Feature">City Tech Index
+                </a>
+                <a href="/healthcare-cost" class="menu-item">
+                    <img src="static/images/cardiogram.png" alt="Healthcare">Healthcare Cost
+                </a>    
+                <a href="/job-vacancy" class="menu-item">
+                    <img src="static/images/dashboard.png" alt="Feature">Job Vacancy Dashboard
+                </a>
+                <a href="/rent-comparison" class="menu-item">
+                    <img src="static/images/home.png" alt="Feature">Rent Comparison
+                </a>
+
+			</div>
+		</div>
+	</nav>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <h1 class="text-2xl md:text-3xl font-bold text-center text-[#073B4C]">醫療費用上漲：2014-2024年自付醫療費用分析</h1>
+            <p class="text-center text-gray-500 mt-1">對全球主要城市2014年至2024年自付醫療費用進行的11年分析，追蹤個人所承受的財務負擔</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+
+        
+        <section class="mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="stat-card md:col-span-1">
+                    <h3 class="text-lg font-semibold text-gray-500">平均費用增長</h3>
+                    <p id="avgIncrease" class="text-5xl font-bold text-red-600 my-2" style="color: #dc2626 !important;">+0%</p>
+                    <p class="text-md text-gray-600">從2014年到2024年，涵蓋所有11個分析城市。</p>
+                </div>
+                <div class="stat-card md:col-span-1">
+                    <h3 class="text-lg font-semibold text-gray-500">2024年最昂貴城市</h3>
+                    <p id="mostExpensiveCity" class="text-4xl font-bold text-bb3e03 my-2">載入中...</p>
+                    <p id="mostExpensiveCost" class="text-md text-gray-600">$0 / 年</p>
+                </div>
+                 <div class="stat-card md:col-span-1">
+                    <h3 class="text-lg font-semibold text-gray-500">2024年最便宜城市</h3>
+                    <p id="leastExpensiveCity" class="text-4xl font-bold text-0a9396 my-2">載入中...</p>
+                    <p id="leastExpensiveCost" class="text-md text-gray-600">$0 / 年</p>
+                </div>
+            </div>
+        </section>
+
+
+        
+        <section class="mb-16 bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-bold mb-2 section-title">全球趨勢：十年的增長</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-8">此圖表顯示了所有十一個城市平均自付醫療費用的穩定增長。它突顯了持續上升的趨勢，強調了過去十年個人所面臨日益增長的財務壓力。</p>
+            <div class="chart-container">
+                <canvas id="averageCostTrendChart"></canvas>
+            </div>
+        </section>
+
+        
+        <section class="mb-16 bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-bold mb-2 section-title">2024年城市比較：差異一覽</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-8">費用並非統一。此圖表比較了2024年各城市的自付費用，揭示了全球醫療負擔能力的顯著差異。城市按從最昂貴到最便宜的順序排名。</p>
+            <div class="chart-container">
+                <canvas id="cityComparisonChart"></canvas>
+            </div>
+        </section>
+
+        
+        <section class="mb-16 bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-bold mb-2 section-title">十年的變革：城市逐年軌跡</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-8">以下圖表追蹤了所有十一個城市從2014年到2024年的個別費用變化，便於比較其長期趨勢並找出哪些地區經歷了最顯著的增長。</p>
+            <div class="chart-container" style="max-height: 55vh; height: 500px;">
+                <canvas id="cityTrendsChart"></canvas>
+            </div>
+        </section>
+        
+        
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold mb-2 section-title">2024年城市詳細排名</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-8">為清晰起見，下表提供了2024年各城市的精確自付費用，按從高到低的順序排列。這提供了對最新數據年份財務狀況的直接比較。</p>
+            <div class="overflow-x-auto bg-white rounded-lg shadow-md p-4">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">排名</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">城市</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">年度自付費用 (2024)</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">年度人均總醫療費用 (2024 USD)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cityRankingTable" class="bg-white divide-y divide-gray-200">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    </div>
+
+    <script>
+        const healthcareData = [
+            { "Year": 2014, "City": "紐約市", "Cost": 1078.29 },
+            { "Year": 2015, "City": "紐約市", "Cost": 1090.69 },
+            { "Year": 2016, "City": "紐約市", "Cost": 1114.50 },
+            { "Year": 2017, "City": "紐約市", "Cost": 1153.29 },
+            { "Year": 2018, "City": "紐約市", "Cost": 1191.98 },
+            { "Year": 2019, "City": "紐約市", "Cost": 1230.77 },
+            { "Year": 2020, "City": "紐約市", "Cost": 1206.40 },
+            { "Year": 2021, "City": "紐約市", "Cost": 1334.09 },
+            { "Year": 2022, "City": "紐約市", "Cost": 1413.11 },
+            { "Year": 2023, "City": "紐約市", "Cost": 1501.52 },
+            { "Year": 2024, "City": "紐約市", "Cost": 1608.20 },
+            { "Year": 2014, "City": "舊金山", "Cost": 1078.29 },
+            { "Year": 2015, "City": "舊金山", "Cost": 1090.69 },
+            { "Year": 2016, "City": "舊金山", "Cost": 1114.50 },
+            { "Year": 2017, "City": "舊金山", "Cost": 1153.29 },
+            { "Year": 2018, "City": "舊金山", "Cost": 1191.98 },
+            { "Year": 2019, "City": "舊金山", "Cost": 1230.77 },
+            { "Year": 2020, "City": "舊金山", "Cost": 1206.40 },
+            { "Year": 2021, "City": "舊金山", "Cost": 1334.09 },
+            { "Year": 2022, "City": "舊金山", "Cost": 1413.11 },
+            { "Year": 2023, "City": "舊金山", "Cost": 1501.52 },
+            { "Year": 2024, "City": "舊金山", "Cost": 1608.20 },
+            { "Year": 2014, "City": "倫敦", "Cost": 541.78 },
+            { "Year": 2015, "City": "倫敦", "Cost": 566.39 },
+            { "Year": 2016, "City": "倫敦", "Cost": 590.52 },
+            { "Year": 2017, "City": "倫敦", "Cost": 615.07 },
+            { "Year": 2018, "City": "倫敦", "Cost": 639.46 },
+            { "Year": 2019, "City": "倫敦", "Cost": 664.08 },
+            { "Year": 2020, "City": "倫敦", "Cost": 652.19 },
+            { "Year": 2021, "City": "倫敦", "Cost": 665.85 },
+            { "Year": 2022, "City": "倫敦", "Cost": 678.50 },
+            { "Year": 2023, "City": "倫敦", "Cost": 797.36 },
+            { "Year": 2024, "City": "倫敦", "Cost": 846.07 },
+            { "Year": 2014, "City": "新加坡", "Cost": 837.76 },
+            { "Year": 2015, "City": "新加坡", "Cost": 765.25 },
+            { "Year": 2016, "City": "新加坡", "Cost": 699.98 },
+            { "Year": 2017, "City": "新加坡", "Cost": 722.61 },
+            { "Year": 2018, "City": "新加坡", "Cost": 747.05 },
+            { "Year": 2019, "City": "新加坡", "Cost": 741.09 },
+            { "Year": 2020, "City": "新加坡", "Cost": 746.44 },
+            { "Year": 2021, "City": "新加坡", "Cost": 844.75 },
+            { "Year": 2022, "City": "新加坡", "Cost": 890.30 },
+            { "Year": 2023, "City": "新加坡", "Cost": 870.36 },
+            { "Year": 2024, "City": "新加坡", "Cost": 870.78 },
+            { "Year": 2014, "City": "雪梨", "Cost": 1335.00 },
+            { "Year": 2015, "City": "雪梨", "Cost": 1357.90 },
+            { "Year": 2016, "City": "雪梨", "Cost": 1376.80 },
+            { "Year": 2017, "City": "雪梨", "Cost": 1394.90 },
+            { "Year": 2018, "City": "雪梨", "Cost": 1413.20 },
+            { "Year": 2019, "City": "雪梨", "Cost": 1310.60 },
+            { "Year": 2020, "City": "雪梨", "Cost": 1417.00 },
+            { "Year": 2021, "City": "雪梨", "Cost": 1425.50 },
+            { "Year": 2022, "City": "雪梨", "Cost": 1484.70 },
+            { "Year": 2023, "City": "雪梨", "Cost": 1531.10 },
+            { "Year": 2024, "City": "雪梨", "Cost": 1591.00 },
+            { "Year": 2014, "City": "溫哥華", "Cost": 1230.00 },
+            { "Year": 2015, "City": "溫哥華", "Cost": 1258.60 },
+            { "Year": 2016, "City": "溫哥華", "Cost": 1285.20 },
+            { "Year": 2017, "City": "溫哥華", "Cost": 1308.90 },
+            { "Year": 2018, "City": "溫哥華", "Cost": 1331.00 },
+            { "Year": 2019, "City": "溫哥華", "Cost": 1352.50 },
+            { "Year": 2020, "City": "溫哥華", "Cost": 1299.00 },
+            { "Year": 2021, "City": "溫哥華", "Cost": 1366.80 },
+            { "Year": 2022, "City": "溫哥華", "Cost": 1429.10 },
+            { "Year": 2023, "City": "溫哥華", "Cost": 1499.00 },
+            { "Year": 2024, "City": "溫哥華", "Cost": 1572.40 },
+            { "Year": 2014, "City": "首爾", "Cost": 668.47 },
+            { "Year": 2015, "City": "首爾", "Cost": 657.43 },
+            { "Year": 2016, "City": "首爾", "Cost": 664.99 },
+            { "Year": 2017, "City": "首爾", "Cost": 817.84 },
+            { "Year": 2018, "City": "首爾", "Cost": 797.87 },
+            { "Year": 2019, "City": "首爾", "Cost": 777.74 },
+            { "Year": 2020, "City": "首爾", "Cost": 781.56 },
+            { "Year": 2021, "City": "首爾", "Cost": 911.04 },
+            { "Year": 2022, "City": "首爾", "Cost": 878.10 },
+            { "Year": 2023, "City": "首爾", "Cost": 932.00 },
+            { "Year": 2024, "City": "首爾", "Cost": 966.00 },
+            { "Year": 2014, "City": "東京", "Cost": 481.99 },
+            { "Year": 2015, "City": "東京", "Cost": 431.73 },
+            { "Year": 2016, "City": "東京", "Cost": 473.95 },
+            { "Year": 2017, "City": "東京", "Cost": 459.01 },
+            { "Year": 2018, "City": "東京", "Cost": 469.24 },
+            { "Year": 2019, "City": "東京", "Cost": 487.44 },
+            { "Year": 2020, "City": "東京", "Cost": 493.53 },
+            { "Year": 2021, "City": "東京", "Cost": 537.91 },
+            { "Year": 2022, "City": "東京", "Cost": 426.79 },
+            { "Year": 2023, "City": "東京", "Cost": 440.00 },
+            { "Year": 2024, "City": "東京", "Cost": 759.00 },
+            { "Year": 2014, "City": "台北", "Cost": 795.50 },
+            { "Year": 2015, "City": "台北", "Cost": 803.00 },
+            { "Year": 2016, "City": "台北", "Cost": 765.00 },
+            { "Year": 2017, "City": "台北", "Cost": 816.96 },
+            { "Year": 2018, "City": "台北", "Cost": 775.50 },
+            { "Year": 2019, "City": "台北", "Cost": 744.00 },
+            { "Year": 2020, "City": "台北", "Cost": 735.00 },
+            { "Year": 2021, "City": "台北", "Cost": 740.00 },
+            { "Year": 2022, "City": "台北", "Cost": 739.50 },
+            { "Year": 2023, "City": "台北", "Cost": 718.77 },
+            { "Year": 2024, "City": "台北", "Cost": 728.00 },
+            { "Year": 2014, "City": "曼谷", "Cost": 25.65 },
+            { "Year": 2015, "City": "曼谷", "Cost": 25.20 },
+            { "Year": 2016, "City": "曼谷", "Cost": 25.28 },
+            { "Year": 2017, "City": "曼谷", "Cost": 25.94 },
+            { "Year": 2018, "City": "曼谷", "Cost": 30.22 },
+            { "Year": 2019, "City": "曼谷", "Cost": 25.00 },
+            { "Year": 2020, "City": "曼谷", "Cost": 24.35 },
+            { "Year": 2021, "City": "曼谷", "Cost": 27.28 },
+            { "Year": 2022, "City": "曼谷", "Cost": 27.01 },
+            { "Year": 2023, "City": "曼谷", "Cost": 27.06 },
+            { "Year": 2024, "City": "曼谷", "Cost": 25.35 },
+            { "Year": 2014, "City": "香港", "Cost": 823.20 },
+            { "Year": 2015, "City": "香港", "Cost": 852.05 },
+            { "Year": 2016, "City": "香港", "Cost": 866.08 },
+            { "Year": 2017, "City": "香港", "Cost": 890.54 },
+            { "Year": 2018, "City": "香港", "Cost": 916.78 },
+            { "Year": 2019, "City": "香港", "Cost": 914.67 },
+            { "Year": 2020, "City": "香港", "Cost": 923.80 },
+            { "Year": 2021, "City": "香港", "Cost": 951.35 },
+            { "Year": 2022, "City": "香港", "Cost": 984.21 },
+            { "Year": 2023, "City": "香港", "Cost": 993.89 },
+            { "Year": 2024, "City": "香港", "Cost": 1604.70 }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const years = [...new Set(healthcareData.map(d => d.Year))].sort();
+            const cities = [...new Set(healthcareData.map(d => d.City))];
+            
+            const brilliantBlues = ['#005f73', '#0a9396', '#94d2bd', '#e9d8a6', '#ee9b00', '#ca6702', '#bb3e03', '#ae2012', '#9b2226'];
+
+            const formatCurrency = (value) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
+
+            function wrapLabel(str) {
+                const maxLength = 16;
+                if (str.length <= maxLength) return str;
+                const words = str.split(' ');
+                let lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > maxLength) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                }
+                if (currentLine) lines.push(currentLine);
+                return lines;
+            }
+
+            const tooltipTitleCallback = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            }
+                        }
+                    }
+                }
+            };
+
+            const totalHealthExpenditure2024 = {
+                "紐約市": 12434,
+                "舊金山": 12434,
+                "倫敦": 5036,
+                "新加坡": 4321,
+                "雪梨": 7055,
+                "溫哥華": 6255,
+                "首爾": 3050,
+                "東京": 3889,
+                "台北": 2000,
+                "曼谷": 364,
+                "香港": 3000
+            };
+            
+            function renderStatCards() {
+                const data2014 = healthcareData.filter(d => d.Year === 2014);
+                const data2024 = healthcareData.filter(d => d.Year === 2024);
+
+                const avg2014 = data2014.reduce((sum, item) => sum + item.Cost, 0) / data2014.length;
+                const avg2024 = data2024.reduce((sum, item) => sum + item.Cost, 0) / data2024.length;
+
+                const pctIncrease = ((avg2024 - avg2014) / avg2014) * 100;
+                const avgIncreaseElement = document.getElementById('avgIncrease');
+                avgIncreaseElement.textContent = `+${pctIncrease.toFixed(1)}%`;
+                avgIncreaseElement.style.setProperty('color', '#dc2626', 'important');
+
+                const sorted2024 = [...data2024].sort((a, b) => b.Cost - a.Cost);
+                const mostExpensive = sorted2024[0];
+                const leastExpensive = sorted2024[sorted2024.length - 1];
+
+                document.getElementById('mostExpensiveCity').textContent = mostExpensive.City;
+                document.getElementById('mostExpensiveCost').textContent = `${formatCurrency(mostExpensive.Cost)} / 年`;
+                document.getElementById('leastExpensiveCity').textContent = leastExpensive.City;
+                document.getElementById('leastExpensiveCost').textContent = `${formatCurrency(leastExpensive.Cost)} / 年`;
+            }
+
+            function renderAverageCostTrendChart() {
+                const averageCosts = years.map(year => {
+                    const yearData = healthcareData.filter(d => d.Year === year);
+                    return yearData.reduce((sum, item) => sum + item.Cost, 0) / yearData.length;
+                });
+                
+                new Chart(document.getElementById('averageCostTrendChart'), {
+                    type: 'line',
+                    data: {
+                        labels: years,
+                        datasets: [{
+                            label: '平均自付費用 (USD)',
+                            data: averageCosts,
+                            backgroundColor: 'rgba(10, 147, 150, 0.2)',
+                            borderColor: '#0a9396',
+                            pointBackgroundColor: '#0a9396',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: '#0a9396',
+                            tension: 0.3,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: { y: { ticks: { callback: value => formatCurrency(value) + ' USD' } } },
+                        plugins: tooltipTitleCallback.plugins
+                    }
+                });
+            }
+
+            function renderCityComparisonChart() {
+                const data2024 = healthcareData.filter(d => d.Year === 2024).sort((a, b) => b.Cost - a.Cost);
+                
+                new Chart(document.getElementById('cityComparisonChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: data2024.map(d => wrapLabel(d.City)),
+                        datasets: [{
+                            label: '2024年自付費用 (USD)',
+                            data: data2024.map(d => d.Cost),
+                            backgroundColor: '#ee9b00',
+                            borderColor: '#ca6702',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: { x: { ticks: { callback: value => formatCurrency(value) + ' USD' } } },
+                        plugins: tooltipTitleCallback.plugins
+                    }
+                });
+            }
+
+            function renderCityTrendsChart() {
+                const cityDatasets = cities.map((city, index) => {
+                    const cityData = healthcareData.filter(d => d.City === city).sort((a, b) => a.Year - b.Year);
+                    return {
+                        label: city,
+                        data: cityData.map(d => d.Cost),
+                        borderColor: brilliantBlues[index % brilliantBlues.length],
+                        backgroundColor: brilliantBlues[index % brilliantBlues.length] + '33',
+                        tension: 0.1,
+                        fill: false
+                    };
+                });
+                
+                new Chart(document.getElementById('cityTrendsChart'), {
+                    type: 'line',
+                    data: {
+                        labels: years,
+                        datasets: cityDatasets
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: { y: { ticks: { callback: value => formatCurrency(value) + ' USD' } } },
+                        plugins: {
+                            ...tooltipTitleCallback.plugins,
+                            legend: {
+                                position: 'top',
+                                labels: {
+                                   boxWidth: 20
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            function renderCityRankingTable() {
+                const data2024 = healthcareData.filter(d => d.Year === 2024).sort((a, b) => b.Cost - a.Cost);
+                const tableBody = document.getElementById('cityRankingTable');
+                tableBody.innerHTML = '';
+                data2024.forEach((item, index) => {
+                    const totalHealthCost = totalHealthExpenditure2024[item.City] || 'N/A'; // Get total health cost for 2024
+                    const row = `
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${index + 1}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">${item.City}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">${formatCurrency(item.Cost)}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">${totalHealthCost !== 'N/A' ? formatCurrency(totalHealthCost) : 'N/A'}</td>
+                        </tr>
+                    `;
+                    tableBody.innerHTML += row;
+                });
+            }
+            
+            renderStatCards();
+            renderAverageCostTrendChart();
+            renderCityComparisonChart();
+            renderCityTrendsChart();
+            renderCityRankingTable();
+        });
+    </script>
+</body>
+</html>

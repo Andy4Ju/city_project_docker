@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ city_id }} 年度統計資料</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+<body>
+    <section id="main" class="wrapper">
+        <div class="inner">
+            <h2>{{ city_id.upper() }} 年度指標</h2>
+
+            {% if df.empty %}
+                <p>查無資料</p>
+            {% else %}
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>年份</th>
+                            <th>CPI</th>
+                            <th>CR</th>
+                            <th>RI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in df.itertuples() %}
+                        <tr>
+                            <td>{{ row.year }}</td>
+                            <td>{{ row.cpi }}</td>
+                            <td>{{ row.cr }}</td>
+                            <td>{{ row.ri }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+
+            <br>
+            <a href="/" class="button">返回首頁</a>
+        </div>
+    </section>
+</body>
+</html>
