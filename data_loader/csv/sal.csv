@@ -1,4 +1,4 @@
-﻿city_id,year,junior_low,junior_median,junior_high,senior_low,senior_median,senior_high
+﻿city_id,year,ju_low,ju_med,ju_high,se_low,se_med,se_high
 nyc,2025,66000,90000,115000,134000,161500,214000
 sfo,2025,75000,95000,190000,130000,198000,366000
 lon,2025,53500,70300,125000,119000,154600,280000
