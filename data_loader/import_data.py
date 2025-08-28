@@ -10,7 +10,7 @@ db_user = os.getenv("MYSQL_USER", "root")
 db_pass = os.getenv("MYSQL_PASSWORD", "P%40ssw0rd") # root
 db_host = os.getenv("MYSQL_HOST", "localhost") # city_mysql
 db_port = os.getenv("MYSQL_PORT", "3306")
-db_name = os.getenv("MYSQL_DATABASE", "city_study")
+db_name = os.getenv("MYSQL_DATABASE", "city")
 
 DB_URI = f"mysql+pymysql://{db_user}:{db_pass}@{db_host}:{db_port}/{db_name}"
 
@@ -31,61 +31,57 @@ else:
     print("Failed to connect to MySQL.")
     exit(1)
 
-# 欄位轉換
-def transform(df, table):
-    df.columns = df.columns.str.strip().str.lower()  # 清理欄位名稱
-    if table == "cr":
-        df = df[["city_id", "year", "cr"]]
-        df.columns = ["city_id", "year", "cr"]
-    elif table == "cpi":
-        df = df[["city_id", "year", "cpi"]]
-        df.columns = ["city_id", "year", "cpi"]
-    elif table == "ri":
-        df = df[["city_id", "year", "ri"]]
-        df.columns = ["city_id", "year", "ri"]
-    return df
+# ====== 自動抓取 table 欄位 ======
+def get_table_columns(table_name: str) -> list[str]:
+    query = f"SHOW COLUMNS FROM {table_name}"
+    with engine.connect() as conn:
+        result = conn.execute(text(query))
+        # row[0] 對應欄位名稱（Field）
+        return [row[0] for row in result]
 
-# 匯入所有 CSV 檔
-csv_files = list(Path("./csv").glob("*.csv"))
+# ====== 生成 SQL 語法 ======
+def generate_insert_sql(table_name: str, columns: list[str]) -> str:
+    cols = ", ".join(columns)
+    placeholders = ", ".join([f":{c}" for c in columns])
+    updates = ", ".join([f"{c} = VALUES({c})" for c in columns])
+    return f"INSERT INTO {table_name} ({cols}) VALUES ({placeholders}) ON DUPLICATE KEY UPDATE {updates}"
+
+# ====== CSV 資料夾 ======
+CSV_DIR = Path("./csv")
+csv_files = list(CSV_DIR.glob("*.csv"))
 if not csv_files:
-    print("No CSV files found in ./csv/")
+    print("⚠️ No CSV files found in ./csv/")
     exit(1)
 
+# ====== 匯入 CSV ======
 for csv_path in csv_files:
-    csv_filename = csv_path.name
-    table_name = csv_filename.split(".")[0]
+    table_name = csv_path.stem
+    try:
+        columns = get_table_columns(table_name)
+    except Exception as e:
+        print(f"⚠️ Could not get columns for table '{table_name}': {e}")
+        continue
 
     try:
-        df = pd.read_csv(csv_path, encoding="big5")
-        df = transform(df, table_name)
-        print(f"Reading '{csv_filename}', records: {len(df)}")
+        df = pd.read_csv(csv_path, encoding="utf-8")
+        # 清理欄位名稱
+        df.columns = [c.strip().lower().replace(" ", "_") for c in df.columns]
+        columns_clean = [c.strip().lower().replace(" ", "_") for c in columns]
+        df = df[[c for c in df.columns if c in columns_clean]]
 
+        if df.empty:
+            print(f"⚠️ CSV '{csv_path.name}' has no matching columns, skipping.")
+            continue
+
+        # 將 NaN 轉成 None
+        df = df.where(pd.notnull(df), None)
+
+        print(f"Reading '{csv_path.name}', records: {len(df)}")
+        sql = generate_insert_sql(table_name, df.columns.tolist())
         with engine.begin() as conn:
-            if table_name == "cpi":
-                query = text("""
-                    INSERT INTO cpi (city_id, year, cpi)
-                    VALUES (:city_id, :year, :cpi)
-                    ON DUPLICATE KEY UPDATE cpi = VALUES(cpi)
-                """)
-            elif table_name == "cr":
-                query = text("""
-                    INSERT INTO cr (city_id, year, cr)
-                    VALUES (:city_id, :year, :cr)
-                    ON DUPLICATE KEY UPDATE cr = VALUES(cr)
-                """)
-            elif table_name == "ri":
-                query = text("""
-                    INSERT INTO ri (city_id, year, ri)
-                    VALUES (:city_id, :year, :ri)
-                    ON DUPLICATE KEY UPDATE ri = VALUES(ri)
-                """)
-            else:
-                print(f"Unknown table: {table_name}, skipping.")
-                continue
+            conn.execute(text(sql), df.to_dict(orient="records"))
 
-            conn.execute(query, df.to_dict(orient="records"))
-
-        print(f"✅ Successfully imported '{csv_filename}' into table '{table_name}'")
+        print(f"✅ Successfully imported '{csv_path.name}' into table '{table_name}'")
 
     except Exception as e:
-        print(f"❌ Import failed for '{csv_filename}': {e}")
+        print(f"❌ Import failed for '{csv_path.name}': {e}")
